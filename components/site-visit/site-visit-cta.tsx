@@ -44,16 +44,15 @@ export function SiteVisitCta({
     <section id={id} aria-labelledby={id ? `${id}-title` : undefined} className="scroll-mt-28 py-10 lg:py-14">
       <div className="container-site">
         <div
-          className="surface-red spotlight group relative overflow-hidden rounded-[2rem] shadow-[0_50px_100px_-50px_rgb(0_0_0/0.6)]"
-          style={{ ["--spot" as string]: "rgb(255 210 200 / 0.14)" }}
+          className="theme-light spotlight group relative isolate overflow-hidden rounded-[2rem] border border-line bg-ivory-2 text-ivory shadow-[0_40px_80px_-50px_rgb(0_0_0/0.25)]"
+          style={{ ["--spot" as string]: "rgb(231 46 52 / 0.06)" }}
           data-reveal="mask"
         >
           {image ? (
             <div className="absolute inset-x-0 -top-[12%] -z-10 h-[124%] mix-blend-luminosity" suppressHydrationWarning data-parallax="0.07">
-              <Image src={image.src} alt={image.alt} fill sizes="(min-width: 1440px) 85rem, 100vw" quality={55} className="object-cover opacity-25" />
+              <Image src={image.src} alt={image.alt} fill sizes="(min-width: 1440px) 85rem, 100vw" quality={55} className="object-cover opacity-[0.08]" />
             </div>
           ) : null}
-          <div aria-hidden="true" className="arch-grid pointer-events-none absolute inset-0 -z-10 opacity-60" />
           <span aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 size-80 rounded-full border border-ivory/10 transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110" />
           <span aria-hidden="true" className="pointer-events-none absolute -right-10 -top-10 size-52 rounded-full border border-ivory/10 transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-125" />
 

@@ -57,7 +57,7 @@ export function ApproachList({ items }: { items: ApproachItem[] }) {
         })}
       </ol>
       <div className="relative hidden lg:col-span-5 lg:block">
-        <div className="sticky top-28 aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-ink-3">
+        <div className="theme-dark sticky top-28 aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-ink-3">
           {items.map((v, i) => (
             <figure
               key={v.title}

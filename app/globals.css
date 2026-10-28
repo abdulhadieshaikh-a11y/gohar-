@@ -16,9 +16,9 @@
   --color-ink: #0a0a0b;
   --color-ink-2: #121213;
   --color-ink-3: #1c1c1e;
-  --color-ivory: #f3f2ef;
-  --color-ivory-2: #e7e5e0;
-  --color-paper: #fafaf8;
+  --color-ivory: #ffffff;
+  --color-ivory-2: #f1f0ed;
+  --color-paper: #f7f7f5;
   --color-stone: #cfccc5;
   --color-stone-ink: #a3a09a;
   --color-taupe: #807c75;
@@ -26,7 +26,7 @@
   --color-line: #dcd9d3;
   --color-brass: #8d8880;
   --color-brass-deep: #6f6b64;
-  --color-brass-light: #9f9b94;
+  --color-brass-light: #d9d6d0;
   /* Gohar red, sampled from the official logo (#e72e34), plus a tonal family. */
   --color-gohar: #e72e34;
   --color-gohar-deep: #c4232b;
@@ -56,6 +56,35 @@
     from { opacity: 0; transform: translate3d(0, 0.6em, 0); }
     to { opacity: 1; transform: none; }
   }
+}
+
+/* ------------------------------------------------------------------
+   Light sections (client request, 29 Oct 2026: "white and professional").
+   `.theme-light` turns a section that was designed dark into a white one by
+   swapping the dark/light tokens inside it: bg-ink becomes white, text-ivory
+   becomes ink, stone/brass-light become readable greys. Put `.theme-dark` on
+   photo cards inside such a section so text over pictures stays white.
+------------------------------------------------------------------- */
+.theme-light {
+  --color-ink: #ffffff;
+  --color-ink-2: #f7f7f5;
+  --color-ink-3: #ecebe8;
+  --color-ivory: #0a0a0b;
+  --color-stone: #55524c;
+  --color-stone-ink: #6f6b64;
+  --color-brass-light: #6f6b64;
+  --color-gohar-ink: #f4f3f0;
+  color: var(--color-ivory);
+}
+.theme-dark {
+  --color-ink: #0a0a0b;
+  --color-ink-2: #121213;
+  --color-ink-3: #1c1c1e;
+  --color-ivory: #ffffff;
+  --color-stone: #cfccc5;
+  --color-stone-ink: #a3a09a;
+  --color-brass-light: #d9d6d0;
+  --color-gohar-ink: #140b0c;
 }
 
 @layer base {

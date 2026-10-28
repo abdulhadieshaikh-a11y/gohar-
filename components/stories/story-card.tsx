@@ -29,7 +29,7 @@ function Meta({ story, tone = "light" }: { story: StoryCardData; tone?: "light" 
 export function StoryCard({ story, variant = "default", headingLevel: Heading = "h3", sizes, priority }: StoryCardProps) {
   if (variant === "featured") {
     return (
-      <article className="group relative grid overflow-hidden rounded-[2rem] bg-ink text-ivory lg:grid-cols-12" data-cursor="Read">
+      <article className="theme-light group relative grid overflow-hidden rounded-[2rem] border border-line bg-ivory-2 text-ivory lg:grid-cols-12" data-cursor="Read">
         <div className="zoom-media relative aspect-[16/10] overflow-hidden lg:col-span-7 lg:aspect-auto lg:min-h-[32rem]">
           <Image quality={85}
             src={story.cover.src}

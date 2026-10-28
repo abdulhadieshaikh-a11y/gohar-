@@ -178,7 +178,7 @@ export function HeroShowcase({ slides, tagline }: { slides: HeroSlide[]; tagline
             </p>
             <h1 className="display-2xl hero-words mt-6 max-w-[13ch]">
               <SplitWords text={lead} />{" "}
-              <SplitWords text={accent} em start={lead.split(" ").length} className="text-ivory/45" />
+              <SplitWords text={accent} em start={lead.split(" ").length} className="text-ivory" />
             </h1>
             <div className="hero-fade mt-9 flex flex-col gap-8 xl:flex-row xl:items-end xl:gap-14" style={d(250)}>
               <p className="max-w-md text-[1.05rem] leading-relaxed text-stone sm:text-[1.12rem]">

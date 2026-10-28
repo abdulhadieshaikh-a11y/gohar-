@@ -46,7 +46,7 @@ export default async function ContactPage() {
       />
 
       {/* Channels */}
-      <section aria-label="Ways to reach us" className="relative z-10 -mt-px bg-ink pb-16 lg:pb-24">
+      <section aria-label="Ways to reach us" className="theme-light relative z-10 -mt-px bg-ink pt-12 pb-16 lg:pt-16 lg:pb-24">
         <div className="container-site">
         <ul className={`grid gap-px overflow-hidden rounded-[1.5rem] border border-ivory/10 bg-ivory/10 sm:grid-cols-2 ${channels.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`} data-reveal="stagger">
           {channels.map((c) => (
@@ -54,10 +54,10 @@ export default async function ContactPage() {
               <a
                 href={c.href}
                 {...("external" in c && c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="spotlight press group flex h-full flex-col bg-ink-2 p-7 text-ivory transition-colors duration-500 hover:bg-ink-3 lg:p-9"
+                className="spotlight press group flex h-full flex-col bg-paper p-7 text-ivory transition-colors duration-500 hover:bg-ink-3 lg:p-9"
               >
                 <span className="flex items-center justify-between">
-                  <span className={`grid size-12 place-items-center rounded-full border transition-colors duration-500 ${c.icon ? "border-ink/15 text-ink group-hover:border-ink group-hover:bg-ink group-hover:text-ivory" : "border-whatsapp/60 text-whatsapp group-hover:bg-whatsapp group-hover:text-ivory"}`}>
+                  <span className={`grid size-12 place-items-center rounded-full border transition-colors duration-500 ${c.icon ? "border-ivory/15 text-ivory group-hover:border-ivory group-hover:bg-ivory group-hover:text-ink" : "border-whatsapp/60 text-whatsapp group-hover:bg-whatsapp group-hover:text-ivory"}`}>
                     {c.icon ? <c.icon aria-hidden="true" className="size-5" strokeWidth={1.5} /> : <WhatsAppIcon className="size-5" />}
                   </span>
                   <ArrowUpRight aria-hidden="true" className="size-5 text-stone transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ivory" />

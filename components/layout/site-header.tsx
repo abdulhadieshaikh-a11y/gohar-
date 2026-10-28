@@ -20,16 +20,9 @@ interface SiteHeaderProps {
   groups: NavProjectGroup[];
   phone: { display: string; href: string };
   contact: { email: string; hours: string };
-  /** Project pages whose hero has a light background (header starts dark-on-light). */
-  lightHeroPaths: string[];
+  /** No longer used: the header is always the black bar (kept so callers don't change). */
+  lightHeroPaths?: string[];
   featured: { slug: string; name: string; image: string; alt: string };
-}
-
-/** Pages that open with a dark, photographic hero: the header starts transparent with light text. */
-const DARK_HERO_PATHS = ["/", "/about", "/projects", "/careers", "/contact", "/site-visit"];
-function hasDarkHero(pathname: string, lightHeroPaths: string[]) {
-  if (lightHeroPaths.includes(pathname)) return false;
-  return DARK_HERO_PATHS.includes(pathname) || /^\/projects\/[^/]+$/.test(pathname);
 }
 
 /** On a project page, the booking form opens with that project selected. */
@@ -37,10 +30,10 @@ function projectFromPath(pathname: string): string | undefined {
   return /^\/projects\/([^/]+)$/.exec(pathname)?.[1];
 }
 
+/** The official logo: white "GOHAR" with the red A and bar, made for the black header. */
 const LOGO_LIGHT = "/images/brand/gohar-logo-light-trim.png";
-const LOGO_DARK = "/images/brand/gohar-logo-dark-trim.png";
 
-export function SiteHeader({ groups, phone, contact, featured, lightHeroPaths }: SiteHeaderProps) {
+export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -61,9 +54,8 @@ export function SiteHeader({ groups, phone, contact, featured, lightHeroPaths }:
 
   const allProjects = groups.flatMap((g) => g.projects);
   const previewProject = allProjects.find((p) => p.slug === preview) ?? allProjects[0];
-  const darkHero = hasDarkHero(pathname, lightHeroPaths);
-  // Light text over a dark hero, and always inside the floating dark pill.
-  const lightText = scrolled || (darkHero && !projectsOpen) || (darkHero && projectsOpen);
+  // The header is always a black bar with white text and the white-and-red logo.
+  const lightText = true;
 
   /* Scroll: compact pill after 40px; hide while scrolling down, reveal on scroll up. */
   useEffect(() => {
@@ -190,7 +182,7 @@ export function SiteHeader({ groups, phone, contact, featured, lightHeroPaths }:
         className={`mx-auto transition-[margin,max-width,background-color,border-color,box-shadow,border-radius] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           scrolled
             ? "mt-2.5 max-w-[min(90rem,calc(100%-1.25rem))] rounded-full border border-ivory/10 bg-ink/80 shadow-[0_24px_60px_-24px_rgb(0_0_0/0.7)] backdrop-blur-xl lg:mt-3"
-            : "mt-0 max-w-[92rem] rounded-none border border-transparent"
+            : "mt-0 max-w-none rounded-none border-b border-ivory/10 bg-ink"
         } ${lightText ? "text-ivory" : "text-ink"} relative`}
       >
         {/* Reading progress: a hairline of Gohar red along the floating header. */}
@@ -212,8 +204,7 @@ export function SiteHeader({ groups, phone, contact, featured, lightHeroPaths }:
             }`}
             aria-label="Gohar Group of Companies, home"
           >
-            <Image quality={85} src={LOGO_LIGHT} alt="" fill sizes="190px" preload className={`object-contain object-left transition-opacity duration-500 ${lightText ? "opacity-100" : "opacity-0"}`} />
-            <Image quality={85} src={LOGO_DARK} alt="" fill sizes="190px" className={`object-contain object-left transition-opacity duration-500 ${lightText ? "opacity-0" : "opacity-100"}`} />
+            <Image quality={90} src={LOGO_LIGHT} alt="" fill sizes="200px" preload className="object-contain object-left" />
           </Link>
 
           <nav aria-label="Main" className="hidden lg:block">

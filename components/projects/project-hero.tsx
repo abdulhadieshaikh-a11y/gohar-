@@ -123,8 +123,7 @@ export function ProjectHero({ project }: { project: Project }) {
 
   if (layout === "framed") {
     return (
-      <section className="grain relative isolate bg-ink pt-28 text-ivory lg:pt-36">
-        <div aria-hidden="true" className="arch-grid pointer-events-none absolute inset-0 -z-10" />
+      <section className="theme-light relative isolate bg-white pt-28 text-ivory lg:pt-36">
         <div className="container-site">
           <div className="hero-fade" style={d(50)}>
             <Breadcrumbs items={crumbs} tone="dark" />
@@ -138,7 +137,7 @@ export function ProjectHero({ project }: { project: Project }) {
           </div>
         </div>
         <div className="container-site mt-12">
-          <div className="hero-clip relative aspect-[16/10] overflow-hidden rounded-t-[1.75rem] bg-ink-3 sm:aspect-[16/9] lg:aspect-[21/9]" style={d(300)}>
+          <div className="theme-dark hero-clip relative aspect-[16/10] overflow-hidden rounded-t-[1.75rem] bg-ink-3 sm:aspect-[16/9] lg:aspect-[21/9]" style={d(300)}>
             <Image quality={85} src={project.heroImage.src} alt={project.heroImage.alt} fill preload sizes="(min-width: 1440px) 85rem, 100vw" className="page-hero-image object-cover" />
             <ImageKindBadge kind={project.heroImage.kind} className="absolute bottom-4 right-4" />
           </div>

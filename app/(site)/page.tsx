@@ -95,7 +95,7 @@ export default async function HomePage() {
       <HeroShowcase slides={slides} tagline={company.tagline} />
 
       {/* Running band: what and where Gohar builds */}
-      <div className="border-y border-ivory/10 bg-ink py-5 text-ivory sm:py-6">
+      <div className="theme-light border-y border-line bg-ink py-5 text-ivory sm:py-6">
         <ScrollMarquee
           size="md"
           speed={0.035}
@@ -153,8 +153,8 @@ export default async function HomePage() {
           </div>
 
           {/* Purpose */}
-          <figure className="relative mt-24 grid overflow-hidden rounded-[2rem] bg-ink text-ivory lg:mt-32 lg:grid-cols-12" data-reveal>
-            <div className="relative min-h-72 lg:col-span-5">
+          <figure className="theme-light relative mt-24 grid overflow-hidden rounded-[2rem] border border-line bg-ivory-2 text-ivory lg:mt-32 lg:grid-cols-12" data-reveal>
+            <div className="theme-dark relative min-h-72 lg:col-span-5">
               <Image quality={85} src={plan.intro.src} alt={plan.intro.alt} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
               <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-ink/40" />
               <span className="absolute bottom-5 left-5 flex items-center gap-2 text-[0.8rem] text-ivory/85">
@@ -204,12 +204,12 @@ export default async function HomePage() {
 
       {/* (02) Signature developments: full-screen panels that stack as you scroll */}
       <section aria-labelledby="signature-title" className="bg-ink text-ivory">
-        <div className="container-site flex flex-col gap-8 pb-16 pt-28 lg:flex-row lg:items-end lg:justify-between lg:pt-36">
-          <SectionIntro eyebrow="Signature developments" title="Architecture with a sense of place" tone="dark" index={2} id="signature-title" size="lg" />
+        <div className="theme-light bg-ink"><div className="container-site flex flex-col gap-8 pb-16 pt-28 lg:flex-row lg:items-end lg:justify-between lg:pt-36">
+          <SectionIntro eyebrow="Signature developments" title="Architecture with a sense of place" index={2} id="signature-title" size="lg" />
           <p className="max-w-sm text-[0.95rem] leading-relaxed text-stone" data-reveal>
             {featured.length} landmark projects, from a golf-course residence in Karachi to a mixed-use address in Hyderabad.
           </p>
-        </div>
+        </div></div>
         <div className="relative">
           {featured.map(({ project: p, image: img }, i) => (
             <Fragment key={p.slug}>
@@ -333,11 +333,10 @@ export default async function HomePage() {
       </section>
 
       {/* (04) Approach and values */}
-      <section aria-labelledby="approach-title" className="grain relative isolate overflow-hidden bg-ink py-28 text-ivory lg:py-36">
-        <div aria-hidden="true" className="arch-grid pointer-events-none absolute inset-0 -z-10" />
+      <section aria-labelledby="approach-title" className="theme-light relative isolate overflow-hidden border-t border-line bg-ivory-2 py-28 text-ivory lg:py-36">
         <div className="container-site">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <SectionIntro eyebrow="Our foundation" title="Values behind every development" tone="dark" index={4} id="approach-title" size="lg" />
+            <SectionIntro eyebrow="Our foundation" title="Values behind every development" index={4} id="approach-title" size="lg" />
             <p className="max-w-md text-[0.98rem] leading-relaxed text-stone" data-reveal>
               {company.valuesIntro}
             </p>
@@ -406,19 +405,16 @@ export default async function HomePage() {
       ) : null}
 
       {/* (06) Request a site visit: the dark feature surface */}
-      <section aria-labelledby="home-visit-title" className="surface-red grain overflow-hidden py-28 lg:py-36">
-        <div aria-hidden="true" className="ambient-glow" />
-        <div aria-hidden="true" className="arch-grid pointer-events-none absolute inset-0 -z-10 opacity-70" />
-        <span aria-hidden="true" className="pointer-events-none absolute -left-40 top-1/3 -z-10 size-[36rem] rounded-full border border-ivory/10" />
+      <section aria-labelledby="home-visit-title" className="theme-light relative isolate overflow-hidden border-y border-line bg-ivory-2 py-28 text-ivory lg:py-36">
         <div className="container-site grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="eyebrow flex items-center gap-4 text-ivory/80" data-reveal="fade">
               <span className="num tracking-[0.1em]">(06)</span>
-              <span className="h-px w-10 bg-ivory/50" aria-hidden="true" />
+              <span className="h-px w-10 bg-gohar" aria-hidden="true" />
               Request a site visit
             </p>
             <h2 id="home-visit-title" className="display-lg mt-6" data-reveal="words">
-              <SplitWords text="Walk the site." /> <SplitWords text="Meet the people behind it." em start={3} className="text-ivory/45" />
+              <SplitWords text="Walk the site." /> <SplitWords text="Meet the people behind it." em start={3} className="text-brass-deep" />
             </h2>
             <p className="mt-6 max-w-md leading-relaxed text-ivory/80" data-reveal>
               Choose a development and a time that suits you. This sends a request: our team calls you to confirm before
@@ -445,7 +441,7 @@ export default async function HomePage() {
                 <li key={p.slug} data-reveal style={{ ["--reveal-delay" as string]: `${(i % 2) * 90 + Math.floor(i / 2) * 60}ms` }}>
                   <Link
                     href={siteVisitHref({ project: p.slug })}
-                    className="press group relative block aspect-[5/4] overflow-hidden rounded-[1.1rem] bg-gohar-ink text-ivory ring-1 ring-ivory/15 transition-[box-shadow] duration-500 hover:ring-ivory/60"
+                    className="theme-dark press group relative block aspect-[5/4] overflow-hidden rounded-[1.1rem] bg-gohar-ink text-ivory ring-1 ring-ivory/15 transition-[box-shadow] duration-500 hover:ring-ivory/60"
                     data-tilt="7"
                     data-cursor="Visit"
                   >

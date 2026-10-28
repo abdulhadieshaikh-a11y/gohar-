@@ -56,7 +56,7 @@ export function PageHero({ eyebrow, title, accent, lead, image, crumbs, children
               {accent ? (
                 <>
                   {" "}
-                  <SplitWords text={accent} em start={titleWords} className="text-brass-light" />
+                  <SplitWords text={accent} em start={titleWords} className="text-ivory" />
                 </>
               ) : null}
             </h1>

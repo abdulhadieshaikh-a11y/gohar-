@@ -124,16 +124,15 @@ export default async function CareersPage() {
       </section>
 
       {/* Openings */}
-      <section id="openings" aria-labelledby="openings-title" className="scroll-mt-24 bg-ink py-28 text-ivory lg:py-36">
+      <section id="openings" aria-labelledby="openings-title" className="theme-light scroll-mt-24 border-y border-line bg-ivory-2 py-28 text-ivory lg:py-36">
         <div className="container-site">
-          <SectionIntro eyebrow="Current openings" title="Opportunities at Gohar" tone="dark" index={3} id="openings-title" />
+          <SectionIntro eyebrow="Current openings" title="Opportunities at Gohar" index={3} id="openings-title" />
           {vacancies.length === 0 ? (
             <div
-              className="surface-red spotlight group mt-14 overflow-hidden rounded-[2rem] p-8 shadow-[0_50px_100px_-50px_rgb(0_0_0/0.6)] sm:p-12 lg:p-16"
-              style={{ ["--spot" as string]: "rgb(255 210 200 / 0.14)" }}
+              className="spotlight group relative isolate mt-14 overflow-hidden rounded-[2rem] border border-line bg-white p-8 shadow-[0_40px_80px_-50px_rgb(0_0_0/0.25)] sm:p-12 lg:p-16"
+              style={{ ["--spot" as string]: "rgb(231 46 52 / 0.06)" }}
               data-reveal="mask"
             >
-              <div aria-hidden="true" className="arch-grid pointer-events-none absolute inset-0 -z-10 opacity-60" />
               <span aria-hidden="true" className="pointer-events-none absolute -right-20 -top-20 size-72 rounded-full border border-ivory/10 transition-transform duration-[1400ms] group-hover:scale-110" />
               <div className="grid gap-10 lg:grid-cols-[auto_1fr_auto] lg:items-center">
                 <span className="grid size-20 place-items-center rounded-full border border-ivory/30 bg-ivory/10 transition-transform duration-700 group-hover:rotate-[-8deg] group-hover:scale-105">
@@ -147,7 +146,7 @@ export default async function CareersPage() {
                     In the meantime, send us your CV and we&rsquo;ll keep it on file for future opportunities.
                   </p>
                 </div>
-                <a href="#apply" data-magnetic="" className={buttonClasses("on-red", "lg", "transition-transform")}>
+                <a href="#apply" data-magnetic="" className={buttonClasses("primary", "lg", "transition-transform")}>
                   <FileUp aria-hidden="true" className="size-4" /> Send your CV
                 </a>
               </div>
@@ -157,7 +156,7 @@ export default async function CareersPage() {
               {vacancies.map((v) => (
                 <li
                   key={v.id}
-                  className="spotlight group relative overflow-hidden rounded-[1.5rem] border border-ivory/15 bg-ink-2 p-8 transition-[border-color,transform] duration-500 hover:-translate-y-1 hover:border-ivory/40 lg:p-10"
+                  className="spotlight group relative overflow-hidden rounded-[1.5rem] border border-ivory/15 bg-white p-8 transition-[border-color,transform] duration-500 hover:-translate-y-1 hover:border-ivory/40 lg:p-10"
                   style={{ ["--spot" as string]: "rgb(231 46 52 / 0.18)" }}
                   data-reveal
                 >

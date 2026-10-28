@@ -164,7 +164,7 @@ export default async function PrivacyPage() {
 
   return (
     <>
-      <section className="bg-ink pb-14 pt-36 text-ivory lg:pt-44">
+      <section className="theme-light border-b border-line bg-ivory-2 pb-14 pt-36 text-ivory lg:pt-44">
         <div className="container-site">
           <Breadcrumbs
             tone="dark"

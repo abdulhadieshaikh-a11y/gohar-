@@ -121,7 +121,7 @@ export default async function AboutPage() {
             <span className="brand-dot" aria-hidden="true" /> About {company.name}
           </p>
           <h1 className="display-2xl hero-words mt-6 max-w-[12ch]">
-            <SplitWords text="Where relationships" /> <SplitWords text="come first." em start={2} className="text-ivory/45" />
+            <SplitWords text="Where relationships" /> <SplitWords text="come first." em start={2} className="text-ivory" />
           </h1>
           <div className="hero-fade mt-10 grid gap-8 lg:grid-cols-12 lg:items-end" style={d(250)}>
             <p className="max-w-xl text-[1.08rem] leading-relaxed text-stone lg:col-span-6">{company.introduction}</p>
@@ -279,10 +279,9 @@ export default async function AboutPage() {
       </section>
 
       {/* Purpose, mission, promise: cards that stack as you scroll */}
-      <section aria-labelledby="purpose-title" className="relative isolate overflow-clip bg-ink py-28 text-ivory lg:py-36">
-        <div aria-hidden="true" className="ambient-glow" />
+      <section aria-labelledby="purpose-title" className="theme-light relative isolate overflow-clip border-y border-line bg-ivory-2 py-28 text-ivory lg:py-36">
         <div className="container-site">
-          <SectionIntro eyebrow="Purpose & mission" title="What we stand for" tone="dark" id="purpose-title" index={3} size="lg" />
+          <SectionIntro eyebrow="Purpose & mission" title="What we stand for" id="purpose-title" index={3} size="lg" />
           <div className="mt-16 space-y-6">
             {[
               { label: "Our purpose", text: company.purpose },
@@ -291,7 +290,7 @@ export default async function AboutPage() {
             ].map((s, i) => (
               <article
                 key={s.label}
-                className="sticky overflow-hidden rounded-[2rem] border border-ivory/10 bg-ink-2 p-8 shadow-[0_-30px_60px_-40px_rgb(0_0_0/0.9)] sm:p-12 lg:p-16"
+                className="sticky overflow-hidden rounded-[2rem] border border-line bg-white p-8 shadow-[0_-30px_60px_-40px_rgb(0_0_0/0.25)] sm:p-12 lg:p-16"
                 style={{ top: `${6 + i * 1.5}rem` }}
               >
                 <div className="grid gap-8 lg:grid-cols-12">

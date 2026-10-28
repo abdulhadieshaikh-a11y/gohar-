@@ -73,6 +73,13 @@ _Last updated: 2026-10-25 by Website Manager. No secrets in this file. Detailed 
 | SEC-3 | Med | IP_HASH_SALT not enforced in prod | Open |
 
 ## Change log
+- 2026-10-29 - **Light theme (client request):**
+  - Page background is now pure white (`--color-ivory: #ffffff`).
+  - Content sections that were black are now white or light grey with dark text, via a `.theme-light` class in `app/globals.css` that swaps the dark/light tokens inside a section. `.theme-dark` keeps photo cards inside those sections dark.
+  - Converted: homepage band, purpose card, signature intro, values and site-visit CTA; About "What we stand for"; Careers openings; Contact channels; Privacy header; project Layouts, Payment plans and framed hero; site-visit CTA card; featured story card.
+  - The header is always a solid black bar with white links and the official white-and-red logo (`gohar-logo-light-trim.png`) on every page; the black-letter logo swap was removed.
+  - Headline accent words over photos are now white, and grey labels on dark are lighter (`--color-brass-light: #d9d6d0`).
+  - Kept dark on purpose: photo heroes, full-screen project photo panels, city photo cards, the footer and the 404 page.
 - 2026-10-25 - Website Manager onboarding: profile, CLAUDE.md, `.claude/launch.json` added. No site code changed
 - 2026-10-27 - **Images:**
   - Client-supplied Gohar Towers picture added (`towers-sky.jpg`, now the Towers hero) via `scripts/prepare-towers-photo.mjs`.

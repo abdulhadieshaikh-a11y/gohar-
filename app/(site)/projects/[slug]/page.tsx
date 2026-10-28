@@ -189,10 +189,10 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
 
       {/* Layouts / unit types */}
       {project.unitTypes?.length ? (
-        <section id="layouts" aria-labelledby="layouts-title" className="grain relative isolate scroll-mt-40 overflow-hidden bg-ink py-20 text-ivory lg:py-28">
+        <section id="layouts" aria-labelledby="layouts-title" className="theme-light relative isolate scroll-mt-40 overflow-hidden border-y border-line bg-ivory-2 py-20 text-ivory lg:py-28">
           <div className="container-site">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <SectionIntro eyebrow="Layouts" title={project.unitTypesHeading ?? "Layouts"} tone="dark" id="layouts-title" />
+              <SectionIntro eyebrow="Layouts" title={project.unitTypesHeading ?? "Layouts"} id="layouts-title" />
               <p className="max-w-sm text-[0.88rem] text-stone-ink" data-reveal>
                 Contact our team for detailed layouts and current availability.
               </p>
@@ -293,10 +293,10 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
 
       {/* Published payment plans */}
       {project.payment ? (
-        <section id="payment" aria-labelledby="payment-title" className="grain relative isolate scroll-mt-40 overflow-hidden bg-ink py-20 text-ivory lg:py-28">
+        <section id="payment" aria-labelledby="payment-title" className="theme-light relative isolate scroll-mt-40 overflow-hidden border-y border-line bg-ivory-2 py-20 text-ivory lg:py-28">
           <div className="container-site">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <SectionIntro eyebrow="Payment plans" title="Published prices & instalments" tone="dark" id="payment-title" />
+              <SectionIntro eyebrow="Payment plans" title="Published prices & instalments" id="payment-title" />
               <p className="max-w-md text-[0.88rem] leading-relaxed text-stone" data-reveal>
                 As published on the official Gohar website (read on{" "}
                 {new Date(`${project.payment.retrievedOn}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
