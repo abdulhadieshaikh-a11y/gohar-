@@ -65,9 +65,9 @@ export function ProjectIndex({ projects }: { projects: IndexProject[] }) {
 
   return (
     <div className="relative">
-      <ul ref={listRef} className="relative border-t border-ink/15" onPointerLeave={() => setActive(null)}>
+      <ul ref={listRef} className="relative border-t border-ivory/15" onPointerLeave={() => setActive(null)}>
         {projects.map((p, i) => (
-          <li key={p.slug} className="border-b border-ink/15">
+          <li key={p.slug} className="border-b border-ivory/15">
             <Link
               href={`/projects/${p.slug}`}
               onPointerEnter={() => setActive(i)}
@@ -75,16 +75,16 @@ export function ProjectIndex({ projects }: { projects: IndexProject[] }) {
               onBlur={() => setActive(null)}
               className={`group relative isolate flex items-center gap-4 py-5 transition-[padding,color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:gap-8 sm:py-7 lg:py-8 ${
                 active === i ? "lg:pl-6" : ""
-              } ${active !== null && active !== i ? "lg:text-ink/30" : "text-ink"}`}
+              } ${active !== null && active !== i ? "text-ivory lg:text-ivory/35" : "text-ivory"}`}
             >
-              {/* Obsidian fill that sweeps up behind the active row */}
+              {/* Soft light fill that sweeps up behind the active row */}
               <span
                 aria-hidden="true"
-                className={`absolute inset-0 -z-10 hidden origin-bottom bg-ink transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] lg:block ${
+                className={`absolute inset-0 -z-10 hidden origin-bottom bg-ivory/[0.06] transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] lg:block ${
                   active === i ? "scale-y-100" : "scale-y-0"
                 }`}
               />
-              <span className={`num w-8 shrink-0 text-[0.8rem] font-semibold transition-colors duration-300 ${active === i ? "lg:text-gohar" : "text-muted"}`}>
+              <span className={`num w-8 shrink-0 text-[0.8rem] font-semibold transition-colors duration-300 ${active === i ? "lg:text-gohar" : "text-stone-ink"}`}>
                 {String(i + 1).padStart(2, "0")}
               </span>
               {/* Touch: inline thumbnail */}
@@ -94,22 +94,22 @@ export function ProjectIndex({ projects }: { projects: IndexProject[] }) {
               <span className="min-w-0 flex-1">
                 <span
                   className={`block font-display text-[clamp(1.6rem,4.6vw,4.4rem)] leading-[0.95] transition-colors duration-300 ${
-                    active === i ? "lg:text-ivory" : ""
+                    active === i ? "lg:text-gohar" : ""
                   }`}
                 >
                   {p.name}
                 </span>
                 <span className={`mt-2 block text-[0.85rem] transition-colors duration-300 lg:hidden`}>
-                  <span className="text-muted">{p.location}</span>
+                  <span className="text-stone">{p.location}</span>
                 </span>
               </span>
-              <span className={`hidden shrink-0 text-right text-[0.85rem] leading-snug transition-colors duration-300 lg:block ${active === i ? "text-ivory/70" : "text-muted"}`}>
+              <span className={`hidden shrink-0 text-right text-[0.85rem] leading-snug transition-colors duration-300 lg:block ${active === i ? "text-ivory" : "text-stone"}`}>
                 {p.category}
                 <span className="block">{p.location}</span>
               </span>
               <span
                 className={`grid size-12 shrink-0 place-items-center rounded-full border transition-all duration-500 ${
-                  active === i ? "rotate-45 border-gohar bg-gohar text-ivory lg:mr-6" : "border-ink/15"
+                  active === i ? "rotate-45 border-gohar bg-gohar text-ivory lg:mr-6" : "border-ivory/25"
                 }`}
               >
                 <ArrowUpRight aria-hidden="true" className="size-5" />

@@ -174,13 +174,13 @@ export default async function HomePage() {
       </section>
 
       {/* Interactive index: hover a name to preview the development */}
-      <section aria-labelledby="index-title" className="pb-28 lg:pb-40">
+      <section aria-labelledby="index-title" className="bg-ink py-28 text-ivory lg:py-40">
         <div className="container-site">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <SectionIntro eyebrow="The portfolio" title="Explore every development" id="index-title" size="lg">
+            <SectionIntro eyebrow="The portfolio" title="Explore every development" tone="dark" id="index-title" size="lg">
               <p>Move across the list to preview each project. Tap any name to open it.</p>
             </SectionIntro>
-            <Link href="/projects" data-magnetic="" className={buttonClasses("secondary", "lg", "self-start lg:self-auto")}>
+            <Link href="/projects" data-magnetic="" className={buttonClasses("ghost-light", "lg", "self-start lg:self-auto")}>
               Search &amp; filter <ArrowUpRight aria-hidden="true" className="size-4" />
             </Link>
           </div>
