@@ -195,7 +195,7 @@ export function SiteHeader({ groups, phone, contact, featured, lightHeroPaths = 
           scrolled
             ? "mt-2.5 max-w-[min(90rem,calc(100%-1.25rem))] rounded-full border border-ivory/10 bg-ink/90 shadow-[0_18px_40px_-22px_rgb(0_0_0/0.28)] backdrop-blur-xl lg:mt-3"
             : overPhoto
-              ? "mt-0 max-w-none rounded-none border-b border-transparent bg-gradient-to-b from-black/40 to-transparent"
+              ? "mt-0 max-w-none rounded-none border-0 bg-gradient-to-b from-black/40 to-transparent"
               : "mt-0 max-w-none rounded-none border-b border-line bg-ink"
         } ${lightText ? "text-ivory" : "text-ink"} relative`}
       >
