@@ -20,9 +20,16 @@ interface SiteHeaderProps {
   groups: NavProjectGroup[];
   phone: { display: string; href: string };
   contact: { email: string; hours: string };
-  /** No longer used: the header is always the black bar (kept so callers don't change). */
+  /** Project pages whose hero is light (no full photo behind the header). */
   lightHeroPaths?: string[];
   featured: { slug: string; name: string; image: string; alt: string };
+}
+
+/** Pages that open with a full-bleed photo: the header starts see-through over it. */
+const PHOTO_HERO_PATHS = ["/", "/about", "/projects", "/careers", "/contact", "/site-visit"];
+function hasPhotoHero(pathname: string, lightHeroPaths: string[]) {
+  if (lightHeroPaths.includes(pathname)) return false;
+  return PHOTO_HERO_PATHS.includes(pathname) || /^\/projects\/[^/]+$/.test(pathname);
 }
 
 /** On a project page, the booking form opens with that project selected. */
@@ -30,10 +37,11 @@ function projectFromPath(pathname: string): string | undefined {
   return /^\/projects\/([^/]+)$/.exec(pathname)?.[1];
 }
 
-/** The official logo for light backgrounds: black "GOHAR" with the red A and bar. */
+/** Official logos: black "GOHAR" for the white bar, white "GOHAR" over photos (both with the red A). */
 const LOGO = "/images/brand/gohar-logo-dark-trim.png";
+const LOGO_WHITE = "/images/brand/gohar-logo-light-trim.png";
 
-export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps) {
+export function SiteHeader({ groups, phone, contact, featured, lightHeroPaths = [] }: SiteHeaderProps) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -54,8 +62,11 @@ export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps
 
   const allProjects = groups.flatMap((g) => g.projects);
   const previewProject = allProjects.find((p) => p.slug === preview) ?? allProjects[0];
-  // The header is a white bar on every page. It sits inside .theme-light, which swaps
-  // the ink/ivory tokens, so the "light text" classes below render as dark text on white.
+  // At the top of a page with a photo hero the header is see-through with white text
+  // (.theme-dark). Otherwise (scrolled, or a page without a photo hero) it is a slim
+  // white bar: .theme-light swaps the ink/ivory tokens, so the same "light text"
+  // classes below render as dark text on white.
+  const overPhoto = !scrolled && hasPhotoHero(pathname, lightHeroPaths);
   const lightText = true;
 
   /* Scroll: compact pill after 40px; hide while scrolling down, reveal on scroll up. */
@@ -175,7 +186,7 @@ export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps
 
   return (
     <header
-      className={`theme-light fixed inset-x-0 top-0 z-50 transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      className={`${overPhoto ? "theme-dark" : "theme-light"} fixed inset-x-0 top-0 z-50 transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
         hidden && !projectsOpen && !mobileOpen ? "pointer-events-none -translate-y-[130%] opacity-0" : ""
       }`}
     >
@@ -183,7 +194,9 @@ export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps
         className={`mx-auto transition-[margin,max-width,background-color,border-color,box-shadow,border-radius] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           scrolled
             ? "mt-2.5 max-w-[min(90rem,calc(100%-1.25rem))] rounded-full border border-ivory/10 bg-ink/90 shadow-[0_18px_40px_-22px_rgb(0_0_0/0.28)] backdrop-blur-xl lg:mt-3"
-            : "mt-0 max-w-none rounded-none border-b border-line bg-ink shadow-[0_1px_0_rgb(0_0_0/0.02)]"
+            : overPhoto
+              ? "mt-0 max-w-none rounded-none border-b border-transparent bg-gradient-to-b from-black/40 to-transparent"
+              : "mt-0 max-w-none rounded-none border-b border-line bg-ink"
         } ${lightText ? "text-ivory" : "text-ink"} relative`}
       >
         {/* Reading progress: a hairline of Gohar red along the floating header. */}
@@ -195,17 +208,18 @@ export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps
         </span>
         <div
           className={`flex items-center justify-between gap-4 transition-[height,padding] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled ? "h-[3.75rem] pl-5 pr-2 lg:h-16 lg:pl-7" : "h-[5.25rem] px-5 sm:px-8 lg:h-[6.75rem] lg:px-14"
+            scrolled ? "h-[3.75rem] pl-5 pr-2 lg:h-16 lg:pl-7" : "h-[4.25rem] px-5 sm:px-8 lg:h-[4.75rem] lg:px-12"
           }`}
         >
           <Link
             href="/"
             className={`relative block shrink-0 transition-[width,height] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              scrolled ? "h-[36px] w-[113px] lg:h-[40px] lg:w-[126px]" : "h-[48px] w-[151px] lg:h-[52px] lg:w-[164px] xl:h-[62px] xl:w-[195px]"
+              scrolled ? "h-[36px] w-[113px] lg:h-[40px] lg:w-[126px]" : "h-[38px] w-[120px] lg:h-[44px] lg:w-[139px]"
             }`}
             aria-label="Gohar Group of Companies, home"
           >
-            <Image quality={90} src={LOGO} alt="" fill sizes="200px" preload className="object-contain object-left" />
+            <Image quality={90} src={LOGO_WHITE} alt="" fill sizes="140px" preload className={`object-contain object-left transition-opacity duration-500 ${overPhoto ? "opacity-100" : "opacity-0"}`} />
+            <Image quality={90} src={LOGO} alt="" fill sizes="140px" preload className={`object-contain object-left transition-opacity duration-500 ${overPhoto ? "opacity-0" : "opacity-100"}`} />
           </Link>
 
           <nav aria-label="Main" className="hidden lg:block">
@@ -324,7 +338,7 @@ export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps
         inert={!projectsOpen}
         onMouseEnter={openWithHover}
         onMouseLeave={closeWithHover}
-        className={`absolute inset-x-0 top-full hidden px-3 pt-3 transition-[opacity,transform,visibility] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:block ${
+        className={`theme-light absolute inset-x-0 top-full hidden px-3 pt-3 transition-[opacity,transform,visibility] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:block ${
           projectsOpen ? "visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-3 opacity-0"
         }`}
       >
@@ -410,7 +424,7 @@ export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps
           closeMobile();
         }}
         onClose={() => setMobileOpen(false)}
-        className="m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto bg-transparent p-0 text-ivory backdrop:bg-transparent"
+        className="theme-light m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto bg-transparent p-0 text-ivory backdrop:bg-transparent"
         data-lenis-prevent=""
       >
         <div className={`mobile-menu relative min-h-full bg-ink ${mobileClosing ? "is-closing" : ""}`}>
