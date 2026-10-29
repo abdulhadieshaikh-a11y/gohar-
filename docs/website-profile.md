@@ -73,6 +73,7 @@ _Last updated: 2026-10-25 by Website Manager. No secrets in this file. Detailed 
 | SEC-3 | Med | IP_HASH_SALT not enforced in prod | Open |
 
 ## Change log
+- 2026-10-30 - **White navbar + white portfolio list (client request):** the header (bar, floating pill, Projects dropdown, mobile menu) now sits inside `.theme-light`, so it is white with dark links and the official dark-letter logo (`gohar-logo-dark-trim.png`); the dropdown's photo preview keeps `.theme-dark`. The homepage "Explore every development" list is back on white with dark-grey names, a light grey hover fill and a red name on hover (no black fill).
 - 2026-10-29 - **Light theme (client request):**
   - Page background is now pure white (`--color-ivory: #ffffff`).
   - Content sections that were black are now white or light grey with dark text, via a `.theme-light` class in `app/globals.css` that swaps the dark/light tokens inside a section. `.theme-dark` keeps photo cards inside those sections dark.

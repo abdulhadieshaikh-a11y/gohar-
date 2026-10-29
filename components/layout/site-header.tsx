@@ -30,8 +30,8 @@ function projectFromPath(pathname: string): string | undefined {
   return /^\/projects\/([^/]+)$/.exec(pathname)?.[1];
 }
 
-/** The official logo: white "GOHAR" with the red A and bar, made for the black header. */
-const LOGO_LIGHT = "/images/brand/gohar-logo-light-trim.png";
+/** The official logo for light backgrounds: black "GOHAR" with the red A and bar. */
+const LOGO = "/images/brand/gohar-logo-dark-trim.png";
 
 export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps) {
   const pathname = usePathname();
@@ -54,7 +54,8 @@ export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps
 
   const allProjects = groups.flatMap((g) => g.projects);
   const previewProject = allProjects.find((p) => p.slug === preview) ?? allProjects[0];
-  // The header is always a black bar with white text and the white-and-red logo.
+  // The header is a white bar on every page. It sits inside .theme-light, which swaps
+  // the ink/ivory tokens, so the "light text" classes below render as dark text on white.
   const lightText = true;
 
   /* Scroll: compact pill after 40px; hide while scrolling down, reveal on scroll up. */
@@ -174,15 +175,15 @@ export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      className={`theme-light fixed inset-x-0 top-0 z-50 transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
         hidden && !projectsOpen && !mobileOpen ? "pointer-events-none -translate-y-[130%] opacity-0" : ""
       }`}
     >
       <div
         className={`mx-auto transition-[margin,max-width,background-color,border-color,box-shadow,border-radius] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           scrolled
-            ? "mt-2.5 max-w-[min(90rem,calc(100%-1.25rem))] rounded-full border border-ivory/10 bg-ink/80 shadow-[0_24px_60px_-24px_rgb(0_0_0/0.7)] backdrop-blur-xl lg:mt-3"
-            : "mt-0 max-w-none rounded-none border-b border-ivory/10 bg-ink"
+            ? "mt-2.5 max-w-[min(90rem,calc(100%-1.25rem))] rounded-full border border-ivory/10 bg-ink/90 shadow-[0_18px_40px_-22px_rgb(0_0_0/0.28)] backdrop-blur-xl lg:mt-3"
+            : "mt-0 max-w-none rounded-none border-b border-line bg-ink shadow-[0_1px_0_rgb(0_0_0/0.02)]"
         } ${lightText ? "text-ivory" : "text-ink"} relative`}
       >
         {/* Reading progress: a hairline of Gohar red along the floating header. */}
@@ -190,7 +191,7 @@ export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps
           aria-hidden="true"
           className={`pointer-events-none absolute inset-x-6 bottom-0 h-px overflow-hidden transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"}`}
         >
-          <span ref={progressRef} className="block h-full origin-left scale-x-0 bg-ink" />
+          <span ref={progressRef} className="block h-full origin-left scale-x-0 bg-gohar" />
         </span>
         <div
           className={`flex items-center justify-between gap-4 transition-[height,padding] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
@@ -204,7 +205,7 @@ export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps
             }`}
             aria-label="Gohar Group of Companies, home"
           >
-            <Image quality={90} src={LOGO_LIGHT} alt="" fill sizes="200px" preload className="object-contain object-left" />
+            <Image quality={90} src={LOGO} alt="" fill sizes="200px" preload className="object-contain object-left" />
           </Link>
 
           <nav aria-label="Main" className="hidden lg:block">
@@ -327,7 +328,7 @@ export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps
           projectsOpen ? "visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-3 opacity-0"
         }`}
       >
-        <div className="mx-auto max-w-[90rem] overflow-hidden rounded-[1.75rem] border border-ivory/10 bg-ink text-ivory shadow-[0_40px_100px_-30px_rgb(0_0_0/0.75)]">
+        <div className="mx-auto max-w-[90rem] overflow-hidden rounded-[1.75rem] border border-line bg-ink text-ivory shadow-[0_40px_90px_-40px_rgb(0_0_0/0.3)]">
           <div className="grid grid-cols-12">
             <div className="col-span-8 grid grid-cols-4 gap-8 p-10 xl:p-12">
               {groups.map((group) => (
@@ -362,7 +363,7 @@ export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps
             </div>
             <Link
               href={`/projects/${previewProject?.slug ?? featured.slug}`}
-              className="group relative col-span-4 block min-h-[25rem] overflow-hidden bg-ink-3"
+              className="theme-dark group relative col-span-4 block min-h-[25rem] overflow-hidden bg-ink-3 text-ivory"
               tabIndex={-1}
               aria-hidden="true"
             >
@@ -412,10 +413,10 @@ export function SiteHeader({ groups, phone, contact, featured }: SiteHeaderProps
         className="m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto bg-transparent p-0 text-ivory backdrop:bg-transparent"
         data-lenis-prevent=""
       >
-        <div className={`mobile-menu grain relative min-h-full bg-ink ${mobileClosing ? "is-closing" : ""}`}>
+        <div className={`mobile-menu relative min-h-full bg-ink ${mobileClosing ? "is-closing" : ""}`}>
           <div className="relative z-10 flex h-[5.25rem] items-center justify-between px-5 sm:px-8">
             <span className="relative block h-[46px] w-[145px]">
-              <Image quality={85} src={LOGO_LIGHT} alt="Gohar Group of Companies" fill sizes="145px" className="object-contain object-left" />
+              <Image quality={85} src={LOGO} alt="Gohar Group of Companies" fill sizes="145px" className="object-contain object-left" />
             </span>
             <button type="button" className="grid size-11 place-items-center rounded-full border border-ivory/25" onClick={closeMobile} autoFocus>
               <X aria-hidden="true" className="size-5" />
